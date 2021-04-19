@@ -39,7 +39,6 @@ namespace HudanSpace.Controllers
         }
 
         // GET: Users/Details/5
-        [Authorize]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -58,7 +57,6 @@ namespace HudanSpace.Controllers
         }
 
         // GET: Users/Create
-        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -68,7 +66,6 @@ namespace HudanSpace.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Email,Phone,Course")] User user)
         {
@@ -82,7 +79,6 @@ namespace HudanSpace.Controllers
         }
 
         // GET: Users/Edit/5
-        [Authorize]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -102,7 +98,6 @@ namespace HudanSpace.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("Name,Email,Phone,Course")] User user)
         {
@@ -135,7 +130,6 @@ namespace HudanSpace.Controllers
         }
 
         // GET: Users/Delete/5
-        [Authorize]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -155,7 +149,6 @@ namespace HudanSpace.Controllers
 
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
