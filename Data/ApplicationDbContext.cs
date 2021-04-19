@@ -14,5 +14,6 @@ namespace HudanSpace.Data
         {
         }
         public DbSet<HudanSpace.Models.User> User { get; set; }
+        public DbSet<HudanSpace.Models.Course> Course { get; set; }
     }
 }

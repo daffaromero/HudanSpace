@@ -9,10 +9,10 @@ namespace HudanSpace.Models
     public class User
     {
         [Key]
-        public string Name { get; set; }
-        public int Id { get; }
-        public string Email { get; set; }
-        public int Phone { get; set; }
+        public string UserName { get; set; }
+        public int UserID { get; }
+        public string UserEmail { get; set; }
+        public int UserPhone { get; set; }
         public string Course { get; set; }
         public User()
         {

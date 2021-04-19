@@ -7,38 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HudanSpace.Data;
 using HudanSpace.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace HudanSpace.Controllers
 {
-    public class UsersController : Controller
+    public class CoursesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public UsersController(ApplicationDbContext context)
+        public CoursesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Users
+        // GET: Courses
         public async Task<IActionResult> Index()
         {
-            return View(await _context.User.ToListAsync());
+            return View(await _context.Course.ToListAsync());
         }
 
-        // GET: Users/ShowSearchForm
-        public async Task<IActionResult> ShowSearchForm()
-        {
-            return View();
-        }
-
-        // PoST: Users/ShowSearchResults
-        public async Task<IActionResult> ShowSearchResults(String SearchTerm)
-        {
-            return View("Index", await _context.User.Where(u=>u.UserName.Contains(SearchTerm)).ToListAsync());
-        }
-
-        // GET: Users/Details/5
+        // GET: Courses/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -46,39 +33,39 @@ namespace HudanSpace.Controllers
                 return NotFound();
             }
 
-            var user = await _context.User
-                .FirstOrDefaultAsync(m => m.UserName == id);
-            if (user == null)
+            var course = await _context.Course
+                .FirstOrDefaultAsync(m => m.CourseName == id);
+            if (course == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(course);
         }
 
-        // GET: Users/Create
+        // GET: Courses/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Users/Create
+        // POST: Courses/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserName,UserEmail,UserPhone,Course")] User user)
+        public async Task<IActionResult> Create([Bind("CourseName,CourseLevel,CourseRating")] Course course)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(user);
+                _context.Add(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(user);
+            return View(course);
         }
 
-        // GET: Users/Edit/5
+        // GET: Courses/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -86,22 +73,22 @@ namespace HudanSpace.Controllers
                 return NotFound();
             }
 
-            var user = await _context.User.FindAsync(id);
-            if (user == null)
+            var course = await _context.Course.FindAsync(id);
+            if (course == null)
             {
                 return NotFound();
             }
-            return View(user);
+            return View(course);
         }
 
-        // POST: Users/Edit/5
+        // POST: Courses/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("UserName,UserEmail,UserPhone,Course")] User user)
+        public async Task<IActionResult> Edit(string id, [Bind("CourseName,CourseLevel,CourseRating")] Course course)
         {
-            if (id != user.UserName)
+            if (id != course.CourseName)
             {
                 return NotFound();
             }
@@ -110,12 +97,12 @@ namespace HudanSpace.Controllers
             {
                 try
                 {
-                    _context.Update(user);
+                    _context.Update(course);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.UserName))
+                    if (!CourseExists(course.CourseName))
                     {
                         return NotFound();
                     }
@@ -126,10 +113,10 @@ namespace HudanSpace.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(user);
+            return View(course);
         }
 
-        // GET: Users/Delete/5
+        // GET: Courses/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -137,30 +124,30 @@ namespace HudanSpace.Controllers
                 return NotFound();
             }
 
-            var user = await _context.User
-                .FirstOrDefaultAsync(m => m.UserName == id);
-            if (user == null)
+            var course = await _context.Course
+                .FirstOrDefaultAsync(m => m.CourseName == id);
+            if (course == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(course);
         }
 
-        // POST: Users/Delete/5
+        // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var user = await _context.User.FindAsync(id);
-            _context.User.Remove(user);
+            var course = await _context.Course.FindAsync(id);
+            _context.Course.Remove(course);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UserExists(string id)
+        private bool CourseExists(string id)
         {
-            return _context.User.Any(e => e.UserName == id);
+            return _context.Course.Any(e => e.CourseName == id);
         }
     }
 }
