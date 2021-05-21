@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace HudanSpace.Data.Migrations
+namespace HudanSpace.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210419144304_initialsetup")]
-    partial class initialsetup
+    [Migration("20210521111731_NewMigration")]
+    partial class NewMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,21 +21,40 @@ namespace HudanSpace.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("HudanSpace.Models.User", b =>
+            modelBuilder.Entity("HudanSpace.Models.Course", b =>
                 {
-                    b.Property<string>("Name")
+                    b.Property<string>("CourseName")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("Course")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
+                    b.Property<string>("CourseLevel")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Phone")
+                    b.Property<string>("CourseRating")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CourseName");
+
+                    b.ToTable("Course");
+                });
+
+            modelBuilder.Entity("HudanSpace.Models.User", b =>
+                {
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Course")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
-                    b.HasKey("Name");
+                    b.Property<int>("UserPhone")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserName");
 
                     b.ToTable("User");
                 });

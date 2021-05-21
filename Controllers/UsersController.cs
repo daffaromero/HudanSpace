@@ -13,6 +13,10 @@ namespace HudanSpace.Controllers
 {
     public class UsersController : Controller
     {
+        public IActionResult Message()
+        {
+            return View("Message");
+        }
         private readonly ApplicationDbContext _context;
 
         public UsersController(ApplicationDbContext context)
