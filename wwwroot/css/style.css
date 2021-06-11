@@ -18,7 +18,7 @@ body {
 
 .logo a {
     font-size: 40px;
-    font-weight: 50px;
+    font-weight: bold;
     float: left;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: #ffffff;
@@ -220,5 +220,31 @@ h3 {
     section img {
         display: block;
         height: auto;
+    }
+
+    .row {
+        float: right;
+    }
+
+    .row input[type=text] {
+        padding: 6px;
+        margin-top: 8px;
+        font-size: 17px;
+        border: none;
+    }
+
+    .row .form-group {
+        float: right;
+        padding: 6px;
+        margin-top: 8px;
+        margin-right: 16px;
+        background: #ddd;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .row .form-group:hover {
+        background: #ccc;
     }
 }
