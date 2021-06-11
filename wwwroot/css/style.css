@@ -225,26 +225,4 @@ h3 {
     .row {
         float: right;
     }
-
-    .row input[type=text] {
-        padding: 6px;
-        margin-top: 8px;
-        font-size: 17px;
-        border: none;
-    }
-
-    .row .form-group {
-        float: right;
-        padding: 6px;
-        margin-top: 8px;
-        margin-right: 16px;
-        background: #ddd;
-        font-size: 17px;
-        border: none;
-        cursor: pointer;
-    }
-
-    .row .form-group:hover {
-        background: #ccc;
-    }
 }
